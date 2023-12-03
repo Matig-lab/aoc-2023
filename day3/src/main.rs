@@ -69,21 +69,18 @@ impl State {
     }
 
     fn process_gears(self) -> i32 {
-        let mut sum = 0;
-        for sym in self.gear_symbols {
-            let mut adjacents_nums: Vec<i32> = Vec::new();
-            for num in &self.valid_nums {
-                if sym.is_adjacent_to_possible(num) {
-                    adjacents_nums.push(num.num);
-                }
-            }
-            let mut product = 0;
-            if adjacents_nums.len() == 2 {
-                product = adjacents_nums.iter().fold(1, |acc, &x| acc * x);
-            }
-            sum += product;
-        }
-        sum
+        self.gear_symbols
+            .iter()
+            .map(|sym| {
+                self.valid_nums
+                    .iter()
+                    .filter(|num| sym.is_adjacent_to_possible(num))
+                    .map(|num| num.num)
+                    .collect::<Vec<_>>()
+            })
+            .filter(|adjacents_nums| adjacents_nums.len() == 2)
+            .map(|adjacents_nums| adjacents_nums.iter().product::<i32>())
+            .sum()
     }
 
     fn update(&mut self, current_line: i32) {
