@@ -73,7 +73,6 @@ impl Card {
             .filter(|&num| self.winning.contains(num))
             .count() as u32;
 
-        // println!("matches before: {}", matches);
         if self.matches >= 1 {
             self.points = 1;
         }
