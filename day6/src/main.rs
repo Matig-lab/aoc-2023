@@ -48,8 +48,6 @@ fn main() -> std::io::Result<()> {
 
     let mut result1: u64 = 1;
     for i in 0..times.len() {
-        // let beats = get_times_that_beat_record(times[i], records[i]);
-        // result1 *= beats.len() as u64;
         let extremes = time_pressed_from_distance(
             records[i].try_into().unwrap(),
             times[i].try_into().unwrap(),
