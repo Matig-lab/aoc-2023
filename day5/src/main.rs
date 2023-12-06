@@ -88,24 +88,25 @@ impl ConvertionMap {
                 if source_range.1 < current_range.0 || source_range.0 > current_range.1 {
                     // No intersection, add the current range to unchanged
                     new_ranges.push(*current_range);
-                } else {
-                    let intersection = (
-                        source_range.0.max(current_range.0),
-                        source_range.1.min(current_range.1),
-                    );
+                    continue;
+                }
 
-                    // Add the converted intersection to changed
-                    changed.push((self.convert(intersection.0), self.convert(intersection.1)));
+                let intersection = (
+                    source_range.0.max(current_range.0),
+                    source_range.1.min(current_range.1),
+                );
 
-                    // Add any left-over range before the intersection
-                    if current_range.0 < intersection.0 {
-                        new_ranges.push((current_range.0, intersection.0 - 1));
-                    }
+                // Add the converted intersection to changed
+                changed.push((self.convert(intersection.0), self.convert(intersection.1)));
 
-                    // Add any left-over range after the intersection
-                    if intersection.1 < current_range.1 {
-                        new_ranges.push((intersection.1 + 1, current_range.1));
-                    }
+                // Add any left-over range before the intersection
+                if current_range.0 < intersection.0 {
+                    new_ranges.push((current_range.0, intersection.0 - 1));
+                }
+
+                // Add any left-over range after the intersection
+                if intersection.1 < current_range.1 {
+                    new_ranges.push((intersection.1 + 1, current_range.1));
                 }
             }
             unchanged = new_ranges;
