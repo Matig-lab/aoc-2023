@@ -406,7 +406,6 @@ fn main() -> std::io::Result<()> {
         }
     }
 
-
     let extracted_loop = graph.extract_loop(&starting_point);
     let inner_points = graph.count_inner_points(&extracted_loop);
 
@@ -415,7 +414,7 @@ fn main() -> std::io::Result<()> {
     // println!("\n-----------------LOOP-----------------\n");
     // graph.draw_filter(&extracted_loop);
     // println!("\n-------------INNER-POINTS-------------\n");
-    // graph.draw_graph_with_inner_points(&inner_points, &extracted_loop);
+    // graph.draw_inner_points(&inner_points, &extracted_loop);
     // println!("\n----------------RESULT----------------\n");
 
     let result1 = graph.farthest_from(&starting_point);
