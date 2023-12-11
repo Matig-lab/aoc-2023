@@ -4,7 +4,7 @@ use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy)]
 struct Point {
     y: u64,
     x: u64,
@@ -16,7 +16,7 @@ impl Point {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Clone, Copy)]
 struct Galaxy {
     id: u64,
     position: Point,
@@ -127,7 +127,7 @@ impl Universe {
 fn main() -> std::io::Result<()> {
     let args: Vec<String> = env::args().collect();
     if args.len() == 1 {
-        println!("Usage: ./day10 <filename>");
+        println!("Usage: ./day11 <filename>");
         std::process::exit(1);
     }
     let f = File::open(&args[1])?;
