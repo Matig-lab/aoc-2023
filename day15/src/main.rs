@@ -16,7 +16,6 @@ fn parse_line(line: &str) -> Vec<String> {
     splited.map(|s| s.to_string()).collect()
 }
 
-#[derive(Debug)]
 struct LensSlot {
     box_str: String,
     box_num: u32,
