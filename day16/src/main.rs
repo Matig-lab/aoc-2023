@@ -187,7 +187,7 @@ impl Contraption {
 fn main() -> std::io::Result<()> {
     let args: Vec<String> = env::args().collect();
     if args.len() == 1 {
-        println!("Usage: ./day15 <filename>");
+        println!("Usage: ./day16 <filename>");
         std::process::exit(1);
     }
 
